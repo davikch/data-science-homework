@@ -1,9 +1,9 @@
-import decimal
-
 from sqlalchemy import String
+from sqlalchemy import DECIMAL as Decimal
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
+
 
 class Base(DeclarativeBase):
     pass
@@ -15,7 +15,7 @@ class Ride(Base):
     client: Mapped[str] = mapped_column(String)
     driver: Mapped[str] = mapped_column(String)
     destination: Mapped[str] = mapped_column(String)
-    price: Mapped[decimal.Decimal] = mapped_column(decimal.Decimal)
+    price: Mapped[Decimal] = mapped_column(Decimal)
 
     def __init__(self, client, driver, destination, price):
         self.client = client
