@@ -3,6 +3,7 @@ from time import sleep
 
 import sqlalchemy
 from generate_data import generate_entry
+import models
 
 
 if len(sys.argv) < 2:
@@ -12,6 +13,7 @@ else:
 
 # https://docs.sqlalchemy.org/en/20/core/engines.html#postgresql
 engine = sqlalchemy.create_engine("postgresql://postgres@localhost/taxis", echo=True)
+models.Base.metadata.create_all(engine)
 
 with sqlalchemy.orm.Session(engine) as session:
     while True:
