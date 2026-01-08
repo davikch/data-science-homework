@@ -12,7 +12,7 @@ else:
     BATCH_SIZE = int(sys.argv[1])
 
 # https://docs.sqlalchemy.org/en/20/core/engines.html#postgresql
-engine = sqlalchemy.create_engine("postgresql://postgres@localhost/taxis", echo=True)
+engine = sqlalchemy.create_engine("postgresql://postgres@localhost/taxis")
 models.Base.metadata.create_all(engine)
 
 with sqlalchemy.orm.Session(engine) as session:
