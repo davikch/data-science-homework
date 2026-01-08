@@ -15,7 +15,7 @@ class Ride(Base):
     client: Mapped[str] = mapped_column(String)
     driver: Mapped[str] = mapped_column(String)
     destination: Mapped[str] = mapped_column(String)
-    price: Mapped[Decimal] = mapped_column(Decimal)
+    price: Mapped[Decimal] = mapped_column(Decimal(precision=8, scale=2))
 
     def __init__(self, client, driver, destination, price):
         self.client = client
