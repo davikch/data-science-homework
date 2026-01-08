@@ -9,7 +9,7 @@ import models
 if len(sys.argv) < 2:
     BATCH_SIZE = 100
 else:
-    BATCH_SIZE = sys.argv[1]
+    BATCH_SIZE = int(sys.argv[1])
 
 # https://docs.sqlalchemy.org/en/20/core/engines.html#postgresql
 engine = sqlalchemy.create_engine("postgresql://postgres@localhost/taxis", echo=True)
