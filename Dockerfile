@@ -9,4 +9,4 @@ RUN pip install -r requirements.txt
 
 COPY src .
 
-CMD [ "python", "-u", "database_operations.py"]
+CMD [ "python", "-u", "database_operations.py", "20", "5"]
