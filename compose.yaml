@@ -1,0 +1,29 @@
+services:
+
+  python:
+    build: .
+
+    container_name: generator
+    restart: unless-stopped
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db: 
+    image: postgres
+    container_name: db
+    restart: unless-stopped
+
+    ports: [ "5432:5432" ]
+
+    env_file: "src/.env"
+
+    # https://stackoverflow.com/a/72175755
+    # https://stackoverflow.com/a/71986488
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 2s
+      timeout: 20s
+      retries: 10
+      start_period: 5s
