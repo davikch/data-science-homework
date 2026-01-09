@@ -13,9 +13,7 @@ else:
     BATCH_SIZE = int(sys.argv[1])
 
 # https://docs.sqlalchemy.org/en/20/core/engines.html#postgresql
-engine = sqlalchemy.create_engine(
-    f"postgresql://{USER}:{PASSWORD}@localhost/{DB}"
-)
+engine = sqlalchemy.create_engine(f"postgresql://{USER}:{PASSWORD}@db:5432/{DB}")
 models.Base.metadata.create_all(engine)
 
 with sqlalchemy.orm.Session(engine) as session:
@@ -23,4 +21,5 @@ with sqlalchemy.orm.Session(engine) as session:
         batch = [generate_entry() for _ in range(BATCH_SIZE)]
         session.add_all(batch)
         session.commit()
+        print(f"{BATCH_SIZE} entries added!")
         sleep(1)
