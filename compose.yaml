@@ -19,6 +19,10 @@ services:
 
     env_file: "src/.env"
 
+    # https://stackoverflow.com/a/45606440
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
     # https://stackoverflow.com/a/72175755
     # https://stackoverflow.com/a/71986488
     healthcheck:
@@ -27,3 +31,6 @@ services:
       timeout: 20s
       retries: 10
       start_period: 5s
+
+volumes:
+  pgdata:
