@@ -2,11 +2,13 @@
 
 FROM python:3
 
-WORKDIR .
+WORKDIR ./app
 
-COPY src/requirements.txt ./
-RUN pip install -r requirements.txt
+COPY generator/requirements.txt .
 
-COPY src .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY generator .
+COPY .env .
 
 CMD [ "python", "-u", "database_operations.py", "20", "5"]

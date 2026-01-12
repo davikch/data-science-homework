@@ -1,4 +1,1 @@
-generator/.venv
-generator/.env
-generator/__pycache__
-
+.env
